@@ -13,7 +13,7 @@ def register(request):
     if request.method=="POST":
         user_form=forms.User_Form(request.POST)
         user_data_form=forms.Students_form(request.POST,request.FILES)
-        d=request.POST.get('email', '')
+        email=request.POST.get('email', '')
 
         #import pdb;pdb.set_trace()
         if user_form.is_valid() and user_data_form.is_valid():
@@ -29,12 +29,19 @@ def register(request):
             user_data.save()
             register=True
 
-            send_mail("Registration Successful","thanku for registering","nelaturiv@gamil.com", [d],fail_silently=False)
+            send_mail("Registration Successful","thanku for registering","nelaturiv@gamil.com", [email],fail_silently=False)
     else:
         user_form=forms.User_Form()
         user_data_form=forms.Students_form()
     
     dt={'form':user_data_form,'form_user':user_form,'register':register}
+
+    if request.method == 'POST':
+        dt['profile_pic'] = '/home/hemanth/Desktop/vivafest/media/' + user_data.profile_pic.name
+        dt['name'] = request.POST.get('username', '')
+        dt['email']= request.POST.get('email', '')
+        dt['phno']= request.POST.get('phno', 123456)
+
     return render(request,'register.html',context=dt)
 
 def index(request):

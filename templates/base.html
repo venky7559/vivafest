@@ -13,26 +13,31 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="{% url 'index' %}">HOME</a>
   <span class="navbar-toggler-icon"></span>
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<div class="collapse navbar-collapse"
+      id="navbarSupportedContent"
+      style="display: flex !important;flex-direction:column">
+    <div style="margin:10px;">
      <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'admin:index' %}">ADMIN</li>
-      <li class="nav-item">
+      <li class="nav-item active" style="padding: 10px;">
+        <a class="nav-link" href="{% url 'admin:index' %}">ADMIN</a>
+      </li>
+      <li class="nav-item" style="padding: 10px;">
         <a class="nav-link" href="{% url 'register'%}">REGISTRATION</a>
       </li>
       {% if user.is_authenticated %}
-      <li class="nav-item">
+      <li class="nav-item" style="padding: 10px;">
         <a class="nav-link" href="{% url 'logout'%}">logout</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" style="padding: 10px;">
         <a class="nav-link" href="{% url 'wish'%}">Wish</a>
       </li>
       {% else %}
-      <li class="nav-item">
+      <li class="nav-item" style="padding: 10px;">
         <a class="nav-link" href="{% url 'login'%}">login</a>
       </li>
       {% endif %}
       </ul>
+    </div>
 
 {% block body_block %}
 <div class='jumbotron'>
