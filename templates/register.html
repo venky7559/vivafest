@@ -2,13 +2,19 @@
 {% block body_block %}
 {% if register %}
 <h1>Thanks for registering</h1>
+    profile pic:<img src={{profile_pic}}><br>
+    Name : {{name}}<br>
+    Email : {{email}}<br>
+    Phno : {{phno}}<br>
+   
 {% else %}
+<div style="margin-top: 10px;">
 <form method="POST" enctype="multipart/form-data">
 {% csrf_token %}
 {{form_user.as_p}}
 {{form.as_p}}
-<input type="submit" value="Upload">
+<input type="submit" value= "Submit">
 </form>
 {% endif %}
 {% endblock body_block %}
- 
+</div>
